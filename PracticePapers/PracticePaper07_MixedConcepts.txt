@@ -1,0 +1,265 @@
+================================================================================
+IEB INFORMATION TECHNOLOGY PRACTICE PAPER 7
+MIXED CONCEPTS - EXPERT LEVEL
+Questions 2-5: Complex String Processing and Advanced Filtering
+================================================================================
+
+SCENARIO:
+A hotel reservation system needs to manage room bookings and guest information. 
+You will create classes to handle reservations, guest profiles, and occupancy 
+analysis with advanced filtering capabilities.
+
+================================================================================
+QUESTION 2: Creating a Class with String Processing - Reservation     [13 marks]
+================================================================================
+
+Use the class diagram below to create a new class called Reservation. This class 
+will store the details of a hotel room reservation.
+
+Reservation
+Fields:
+- confirmationCode : string
+- guestName : string
+- roomNumber : integer
+- nightsStay : integer
+- ratePerNight : double
+
+Methods:
++ Constructor(inCode : string, inGuest : string, inRoom : integer,
+              inNights : integer, inRate : double)
++ getConfirmationCode() : string
++ getGuestName() : string
++ getRoomNumber() : integer
++ getNightsStay() : integer
++ getTotalCost() : double
++ getFormattedCode() : string
++ toString() : string
+
+2.1  Create a new class named Reservation with the confirmationCode, guestName, 
+     roomNumber, nightsStay and ratePerNight fields, as shown in the class 
+     diagram. These fields must not be accessible outside the class.        (3)
+
+2.2  Write code to create a parameterised constructor method that will accept 
+     parameters for all fields, as shown in the class diagram and assign these 
+     values to the corresponding fields.                                    (3)
+
+2.3  Create accessor methods for the confirmationCode, guestName, roomNumber 
+     and nightsStay fields.                                                 (2)
+
+2.4  Code a method called getTotalCost that calculates the total cost by 
+     multiplying nightsStay by ratePerNight. Return as double rounded to 2 
+     decimal places.                                                        (2)
+
+2.5  Code a method called getFormattedCode that returns the confirmation code 
+     in uppercase with dashes inserted after every 4 characters.
+     
+     For example, if confirmationCode is "abc123xyz789", the method should 
+     return "ABC1-23XY-Z789"                                                (3)
+                                                                            [13]
+
+================================================================================
+QUESTION 3: Creating a Class with Complex Validation - Guest          [20 marks]
+================================================================================
+
+Use the class diagram below to create a new class called Guest. This class will 
+store the details of a hotel guest and their loyalty status.
+
+Guest
+Fields:
+- guestID : string
+- fullName : string
+- loyaltyTier : integer
+- memberSince : date
++ BRONZE = 1 : integer
++ SILVER = 2 : integer
++ GOLD = 3 : integer
++ PLATINUM = 4 : integer
+
+Methods:
++ Constructor(inID : string, inName : string, 
+              inTier : integer, inDate : date)
++ getGuestID() : string
++ getMemberSince() : date
++ getLoyaltyTier() : string
++ setLoyaltyTier(inTier : integer)
++ getDiscountRate() : double
++ shouldUpgrade() : boolean
++ toString() : string
+
+3.1  Create a new class named Guest with the guestID, fullName, loyaltyTier 
+     and memberSince fields as shown in the class diagram. These fields must 
+     not be accessible outside the class.                                   (3)
+
+3.2  Add the class constants BRONZE, SILVER, GOLD and PLATINUM as shown in the 
+     class diagram.                                                         (2)
+
+3.3  Code a parameterised constructor method that will accept parameters for 
+     all fields as shown in the class diagram. Assign these values to the 
+     guestID, loyaltyTier and memberSince fields.
+     
+     Assign the fullName field as follows:
+     o If the inName parameter has less than 3 characters, assign "Guest " + 
+       inID to the fullName field.
+     o Otherwise, convert inName to title case (first letter of each word 
+       capitalized) and assign to the fullName field.                       (5)
+
+3.4  Add accessor methods for the guestID and memberSince fields of the class. (2)
+
+3.5  Code a getLoyaltyTier method to return a string representing the loyalty 
+     tier of the Guest. This method must return:
+     
+     • 'Bronze Member' if the loyaltyTier is BRONZE
+     • 'Silver Member' if the loyaltyTier is SILVER
+     • 'Gold Member' if the loyaltyTier is GOLD
+     • 'Platinum Member' if the loyaltyTier is PLATINUM
+     • 'No Status' if the loyaltyTier is anything else                      (3)
+
+3.6  Code a setLoyaltyTier method as shown in the class diagram to assign the 
+     loyaltyTier of the Guest.                                              (1)
+
+3.7  Code a getDiscountRate method that returns the discount percentage based 
+     on loyalty tier:
+     • BRONZE: 5%  (return 0.05)
+     • SILVER: 10% (return 0.10)
+     • GOLD: 15%   (return 0.15)
+     • PLATINUM: 20% (return 0.20)
+     • Otherwise: 0% (return 0.00)                                          (2)
+
+3.8  Code a shouldUpgrade method that returns true if the guest has been a 
+     member for more than 2 years AND is not already PLATINUM tier. Do NOT 
+     hardcode the current date.                                             (2)
+                                                                            [20]
+
+================================================================================
+QUESTION 4: Creating an Advanced Manager Class - HotelManager         [31 marks]
+================================================================================
+
+4.1  Create a class called HotelManager.                                   (1)
+
+4.2  Create four fields for the HotelManager class as described below:
+     • An array called reservationArr to store up to 100 Reservation objects.
+     • A counter called reservationSize to count objects added to reservationArr.
+     • An array called guestArr to store up to 100 Guest objects.
+     • A counter called guestSize to count objects added to guestArr.
+     The fields should not be accessible outside the class.                 (3)
+
+4.3  Create a constructor method that will read the contents of the text file 
+     HotelData.txt containing information about Guests and Reservations. The 
+     first twenty lines contain data about Guests. You may hardcode the number 
+     20 in your solution. The remaining lines contain data about Reservations. 
+     
+     The method should do the following:
+     • Check if the file HotelData.txt exists.
+     • Display a suitable error message if the file does not exist.
+     • Open the file for reading.
+     • Loop through the first twenty lines of the text file. In each iteration:
+       − Read the line and split the data into separate parts.
+       − Convert the member since date into a Date object (the data is stored 
+         in the format yyyy<space>MM<space>dd).
+       − Create a Guest object and store it in the next available position 
+         in the guestArr array.
+       − Update the counter variable guestSize.
+     • Loop through the remaining lines. In each iteration of the loop:
+       − Read the line and split the data into separate parts.
+       − Create a Reservation object and store it in the next available 
+         position in the reservationArr array.
+       − Update the counter variable reservationSize.                      (15)
+
+4.4  Write code to create a toString method. This method should return a string 
+     with:
+     • The heading 'Guests'.
+     • Underneath the heading the details of all Guests, each on a new line.
+     • A blank line.
+     • The heading 'Reservations'.
+     • Underneath the heading the details of all Reservations, each on a new line.
+     Use the toString methods created in the previous classes.              (6)
+
+4.5  Code a method named getHighValueGuests. This method should return the guest 
+     name and their total spending only for guests whose total spending across 
+     all their reservations exceeds R20000. Calculate total spending by summing 
+     the total cost of all reservations for each guest.
+     
+     The format must be as follows:
+     guestName<space>"- Total: R"<space>totalSpending
+     
+     For example:
+     John Smith - Total: R 25600.00                                         (6)
+                                                                            [31]
+
+================================================================================
+QUESTION 5: Creating an Advanced UI - HotelUI                          [4 marks]
+================================================================================
+
+5.1  Write code to create a text-based user interface called HotelUI that will 
+     allow simple input and output.                                         (1)
+
+5.2  Declare and instantiate a HotelManager object.                        (1)
+
+5.3  Write code to call the appropriate method in the HotelManager class to 
+     display a list of all Guest objects and Reservation objects.           (1)
+
+5.4  Write code to call the appropriate method in the HotelManager class to 
+     display all high value guests.
+     
+     Sample output:
+     John Smith - Total: R 25600.00
+     Sarah Johnson - Total: R 32400.00                                      (1)
+                                                                             [4]
+
+================================================================================
+END OF PRACTICE PAPER 7
+TOTAL: 68 marks
+================================================================================
+
+NOTES FOR LEARNERS:
+• This paper emphasizes string manipulation techniques
+• Practice formatting strings with insertions (adding dashes)
+• Converting to uppercase and title case are common operations
+• The shouldUpgrade method uses compound boolean logic (AND)
+• Calculating totals per guest requires nested loops
+• Remember to match guest names exactly when summing across arrays
+• Discount rates are stored as decimals (5% = 0.05)
+
+SAMPLE DATA FILE: HotelData.txt
+G001#john smith#2#2020 03 15
+G002#SARAH JOHNSON#3#2019 06 20
+G003#AB#1#2023 01 10
+G004#mike davis#4#2018 11 05
+G005#emily brown#1#2024 02 28
+G006#david wilson#2#2021 07 18
+G007#XY#3#2020 09 22
+G008#lisa taylor#2#2022 04 12
+G009#james anderson#4#2017 12 30
+G010#maria garcia#1#2023 08 14
+G011#robert lee#3#2019 05 08
+G012#jennifer white#2#2021 10 25
+G013#william martin#1#2024 01 06
+G014#amanda clark#4#2018 03 19
+G015#charles rodriguez#2#2022 11 11
+G016#jessica martinez#3#2020 02 14
+G017#Z#1#2023 12 05
+G018#matthew lopez#4#2017 08 27
+G019#ashley gonzalez#2#2021 06 09
+G020#christopher perez#3#2019 10 31
+RES001#John Smith#101#5#1200.00
+RES002#Sarah Johnson#205#7#1500.00
+RES003#Guest G003#310#3#980.00
+RES004#Mike Davis#102#4#1800.00
+RES005#Emily Brown#208#2#850.00
+RES006#John Smith#305#6#1350.00
+RES007#David Wilson#115#4#1100.00
+RES008#Guest G007#220#3#920.00
+RES009#Lisa Taylor#312#5#1250.00
+RES010#James Anderson#108#8#1650.00
+RES011#Sarah Johnson#201#6#1400.00
+RES012#Maria Garcia#318#2#800.00
+RES013#Robert Lee#110#7#1550.00
+RES014#Jennifer White#225#4#1150.00
+RES015#John Smith#301#5#1300.00
+RES016#William Martin#122#3#900.00
+RES017#Amanda Clark#215#9#1700.00
+RES018#Sarah Johnson#308#5#1350.00
+RES019#Charles Rodriguez#118#4#1050.00
+RES020#Jessica Martinez#228#6#1400.00
+
+================================================================================

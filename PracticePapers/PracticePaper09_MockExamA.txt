@@ -1,0 +1,244 @@
+================================================================================
+IEB INFORMATION TECHNOLOGY PRACTICE PAPER 9
+MOCK EXAM - FULL SIMULATION (Style A)
+Questions 2-5: Complete Exam Simulation - Music Festival Management
+================================================================================
+
+SCENARIO:
+A music festival organizer needs to manage bands, their performances at various 
+stages, and track ticket sales. You will create a complete system to handle all 
+aspects of festival management including band information, performance scheduling, 
+and revenue analysis.
+
+================================================================================
+QUESTION 2: Creating a Simple Entity Class - Band                     [13 marks]
+================================================================================
+
+Use the class diagram below to create a new class called Band. This class will 
+store the details of a performing band at the festival.
+
+Band
+Fields:
+- bandName : string
+- leadSinger : string
+- memberCount : integer
+- yearsActive : integer
+
+Methods:
++ Constructor(inBand : string, inSinger : string, 
+              inMembers : integer, inYears : integer)
++ getBandName() : string
++ getLeadSinger() : string
++ getMemberCount() : integer
++ isExperienced() : boolean
++ toString() : string
+
+2.1  Create a new class named Band with the bandName, leadSinger, memberCount 
+     and yearsActive fields, as shown in the class diagram. These fields must 
+     not be accessible outside the class.                                   (3)
+
+2.2  Write code to create a parameterised constructor method that will accept 
+     parameters for all fields, as shown in the class diagram and assign these 
+     values to the corresponding fields.                                    (3)
+
+2.3  Create accessor methods for the bandName, leadSinger and memberCount 
+     fields.                                                                (2)
+
+2.4  A band is considered experienced if they have been active for 5 years or 
+     more. Code a method called isExperienced. This method should return true 
+     if the band is experienced, false otherwise.                           (2)
+
+2.5  Create a toString method that will return a string that combines the 
+     values of the bandName, leadSinger, and memberCount fields. The format 
+     of the string should be as follows:
+     
+     bandName<tab>leadSinger<tab>memberCount
+     
+     For example:
+     The Rockers    John Smith    5                                         (3)
+                                                                            [13]
+
+================================================================================
+QUESTION 3: Creating a Complex Class - Performance                    [20 marks]
+================================================================================
+
+Use the class diagram below to create a new class called Performance. This class 
+will store the details of a band's performance at a festival stage.
+
+Performance
+Fields:
+- performanceID : string
+- bandName : string
+- stageType : integer
+- performanceDate : date
++ MAIN_STAGE = 1 : integer
++ ACOUSTIC_STAGE = 2 : integer
++ INDIE_STAGE = 3 : integer
++ ELECTRONIC_STAGE = 4 : integer
+
+Methods:
++ Constructor(inID : string, inBand : string, 
+              inStage : integer, inDate : date)
++ getPerformanceID() : string
++ getPerformanceDate() : date
++ getStageType() : string
++ setStageType(inStage : integer)
++ getDaysUntilPerformance() : integer
++ toString() : string
+
+3.1  Create a new class named Performance with the performanceID, bandName, 
+     stageType and performanceDate fields as shown in the class diagram. These 
+     fields must not be accessible outside the class.                       (3)
+
+3.2  Add the class constants MAIN_STAGE, ACOUSTIC_STAGE, INDIE_STAGE and 
+     ELECTRONIC_STAGE as shown in the class diagram.                        (2)
+
+3.3  Code a parameterised constructor method that will accept parameters for 
+     all fields as shown in the class diagram. Assign these values to the 
+     performanceID, stageType and performanceDate fields.
+     
+     Assign the bandName field as follows:
+     o If the inBand parameter length is less than 2, assign "Unknown Band" 
+       to the bandName field.
+     o Otherwise, assign the inBand parameter to the bandName field.        (5)
+
+3.4  Add accessor methods for the performanceID and performanceDate fields of 
+     the class.                                                             (2)
+
+3.5  Code a getStageType method to return a string representing the stage type 
+     of the Performance. This method must return:
+     
+     • 'Main Stage' if the stageType is MAIN_STAGE
+     • 'Acoustic Stage' if the stageType is ACOUSTIC_STAGE
+     • 'Indie Stage' if the stageType is INDIE_STAGE
+     • 'Electronic Stage' if the stageType is ELECTRONIC_STAGE
+     • 'Stage TBD' if the stageType is anything else                        (4)
+
+3.6  Code a setStageType method as shown in the class diagram to assign the 
+     stageType of the Performance.                                          (2)
+
+3.7  Code a getDaysUntilPerformance method that returns the number of days from 
+     the current date to the performanceDate. If the performance has already 
+     occurred (date is in the past), return 0. Do NOT hardcode the current 
+     date.                                                                  (2)
+                                                                            [20]
+
+================================================================================
+QUESTION 4: Creating a Manager Class - FestivalManager                [31 marks]
+================================================================================
+
+4.1  Create a class called FestivalManager.                                (1)
+
+4.2  Create four fields for the FestivalManager class as described below:
+     • An array called performanceArr to store up to 100 Performance objects.
+     • A counter called performanceSize to count objects added to performanceArr.
+     • An array called bandArr to store up to 100 Band objects.
+     • A counter called bandSize to count objects added to bandArr.
+     The fields should not be accessible outside the class.                 (3)
+
+4.3  Create a constructor method that will read the contents of the text file 
+     FestivalData.txt containing information about Bands and Performances. The 
+     first ten lines contain data about Bands. You may hardcode the number 10 
+     in your solution. The remaining lines contain data about Performances. 
+     
+     The method should do the following:
+     • Check if the file FestivalData.txt exists.
+     • Display a suitable error message if the file does not exist.
+     • Open the file for reading.
+     • Loop through the first ten lines of the text file. In each iteration:
+       − Read the line and split the data into separate parts.
+       − Create a Band object and store it in the next available position 
+         in the bandArr array.
+       − Update the counter variable bandSize.
+     • Loop through the remaining lines. In each iteration of the loop:
+       − Read the line and split the data into separate parts.
+       − Convert the performance date into a Date object (the data is stored 
+         in the format yyyy<space>MM<space>dd).
+       − Create a Performance object and store it in the next available 
+         position in the performanceArr array.
+       − Update the counter variable performanceSize.                      (15)
+
+4.4  Write code to create a toString method. This method should return a string 
+     with:
+     • The heading 'Bands'.
+     • Underneath the heading the details of all Bands, each on a new line.
+     • A blank line.
+     • The heading 'Performances'.
+     • Underneath the heading the details of all Performances, each on a new line.
+     Use the toString methods created in the previous classes.              (6)
+
+4.5  Code a method named getHeadliners. This method should return the band name 
+     and total number of performances only for bands that:
+     • Are experienced (5+ years active)
+     • Have at least 2 performances scheduled
+     
+     The format must be as follows:
+     bandName<space>performanceCount<space>"performances"
+     
+     For example:
+     The Rockers 3 performances                                             (6)
+                                                                            [31]
+
+================================================================================
+QUESTION 5: Creating a User Interface - FestivalUI                     [4 marks]
+================================================================================
+
+5.1  Write code to create a text-based user interface called FestivalUI that 
+     will allow simple input and output.                                    (1)
+
+5.2  Declare and instantiate a FestivalManager object.                     (1)
+
+5.3  Write code to call the appropriate method in the FestivalManager class to 
+     display a list of all Band objects and Performance objects.            (1)
+
+5.4  Write code to call the appropriate method in the FestivalManager class to 
+     display all headliner bands.
+     
+     Sample output:
+     The Rockers 3 performances
+     Jazz Ensemble 2 performances                                           (1)
+                                                                             [4]
+
+================================================================================
+END OF PRACTICE PAPER 9
+TOTAL: 68 marks
+================================================================================
+
+NOTES FOR LEARNERS:
+• This is a full simulation of the IEB exam format
+• Practice time management - allocate your time wisely across questions
+• Read all questions carefully before starting
+• Test your code with the provided sample data
+• Remember to handle file I/O errors appropriately
+• The getHeadliners method requires combining multiple conditions
+• Make sure your toString methods format data correctly
+• Practice calculating days between dates
+
+SAMPLE DATA FILE: FestivalData.txt
+The Rockers#John Smith#5#8
+Jazz Ensemble#Sarah Williams#4#6
+Electronic Beats#Mike Davis#3#3
+Acoustic Dreams#Emily Brown#2#4
+Indie Rebels#David Wilson#4#7
+Rock Legends#Lisa Anderson#6#12
+Pop Stars#James Taylor#5#2
+Folk Tales#Maria Garcia#3#5
+Metal Force#Christopher Lee#5#9
+Classic Sounds#Amanda White#4#6
+P001#The Rockers#1#2024 11 15
+P002#Jazz Ensemble#2#2024 11 16
+P003#Electronic Beats#4#2024 11 15
+P004#Acoustic Dreams#2#2024 11 17
+P005#Indie Rebels#3#2024 11 16
+P006#Rock Legends#1#2024 11 18
+P007#Pop Stars#1#2024 11 15
+P008#The Rockers#3#2024 11 17
+P009#Folk Tales#2#2024 11 19
+P010#Metal Force#1#2024 11 16
+P011#Jazz Ensemble#2#2024 11 18
+P012#Classic Sounds#3#2024 11 15
+P013#The Rockers#1#2024 11 19
+P014#Rock Legends#1#2024 11 20
+P015#Indie Rebels#3#2024 11 17
+
+================================================================================

@@ -1,0 +1,237 @@
+================================================================================
+IEB INFORMATION TECHNOLOGY PRACTICE PAPER 4
+APPLICATION - ADVANCED LEVEL
+Questions 2-5: Complex Data Processing and Array Manipulation
+================================================================================
+
+SCENARIO:
+An online store wants to manage their product inventory and customer orders. 
+You will create classes to represent products and orders, and a system to track 
+sales and inventory.
+
+================================================================================
+QUESTION 2: Creating a Class with Business Logic - Product            [13 marks]
+================================================================================
+
+Use the class diagram below to create a new class called Product. This class 
+will store the details of a product in the inventory.
+
+Product
+Fields:
+- productCode : string
+- productName : string
+- stockLevel : integer
+- price : double
+
+Methods:
++ Constructor(inCode : string, inName : string, 
+              inStock : integer, inPrice : double)
++ getProductCode() : string
++ getProductName() : string
++ getStockLevel() : integer
++ needsRestock() : boolean
++ getStockValue() : double
++ toString() : string
+
+2.1  Create a new class named Product with the productCode, productName, 
+     stockLevel and price fields, as shown in the class diagram. These fields 
+     must not be accessible outside the class.                              (3)
+
+2.2  Write code to create a parameterised constructor method that will accept 
+     parameters for all fields, as shown in the class diagram and assign these 
+     values to the corresponding fields.                                    (3)
+
+2.3  Create accessor methods for the productCode, productName and stockLevel 
+     fields.                                                                (2)
+
+2.4  A product needs restocking if the stockLevel is less than or equal to 10. 
+     Code a method called needsRestock. This method should return true if the 
+     product needs restocking, false otherwise.                             (2)
+
+2.5  Code a method called getStockValue that calculates and returns the total 
+     value of the stock by multiplying stockLevel by price. Return the value 
+     as a double rounded to 2 decimal places.                               (3)
+                                                                            [13]
+
+================================================================================
+QUESTION 3: Creating a Class with Status Tracking - Order             [20 marks]
+================================================================================
+
+Use the class diagram below to create a new class called Order. This class will 
+store the details of a customer order and its status.
+
+Order
+Fields:
+- orderID : string
+- customerName : string
+- orderStatus : integer
+- orderDate : date
++ PENDING = 1 : integer
++ PROCESSING = 2 : integer
++ SHIPPED = 3 : integer
++ DELIVERED = 4 : integer
+
+Methods:
++ Constructor(inID : string, inCustomer : string, 
+              inStatus : integer, inDate : date)
++ getOrderID() : string
++ getOrderDate() : date
++ getOrderStatus() : string
++ setOrderStatus(inStatus : integer)
++ getDaysOld() : integer
++ toString() : string
+
+3.1  Create a new class named Order with the orderID, customerName, orderStatus 
+     and orderDate fields as shown in the class diagram. These fields must not 
+     be accessible outside the class.                                       (3)
+
+3.2  Add the class constants PENDING, PROCESSING, SHIPPED and DELIVERED as 
+     shown in the class diagram.                                            (2)
+
+3.3  Code a parameterised constructor method that will accept parameters for 
+     the order ID, customer name, order status and order date fields as shown 
+     in the class diagram. Assign these values to the orderID, orderStatus and 
+     orderDate fields of the class.
+     
+     Assign the customerName field as follows:
+     o If the inCustomer parameter contains only digits, assign "Guest" + 
+       inCustomer to the customerName field.
+     o Otherwise, assign the inCustomer parameter to the customerName field. (5)
+
+3.4  Add accessor methods for the orderID and orderDate fields of the class. (2)
+
+3.5  Code a getOrderStatus method to return a string representing the status of 
+     the Order. This method must return:
+     
+     • 'Pending' if the orderStatus is PENDING
+     • 'Processing' if the orderStatus is PROCESSING
+     • 'Shipped' if the orderStatus is SHIPPED
+     • 'Delivered' if the orderStatus is DELIVERED
+     • 'Unknown Status' if the orderStatus is anything else                 (4)
+
+3.6  Code a setOrderStatus method as shown in the class diagram to assign the 
+     orderStatus of the Order.                                              (2)
+
+3.7  Code a getDaysOld method that calculates the number of days between the 
+     orderDate and the current date. Return this value as an integer. Do NOT 
+     hardcode the current date.                                             (2)
+                                                                            [20]
+
+================================================================================
+QUESTION 4: Creating a Manager Class - StoreManager                   [31 marks]
+================================================================================
+
+4.1  Create a class called StoreManager.                                   (1)
+
+4.2  Create four fields for the StoreManager class as described below:
+     • An array called productArr to store up to 100 Product objects.
+     • A counter called productSize to count objects added to productArr.
+     • An array called orderArr to store up to 100 Order objects.
+     • A counter called orderSize to count objects added to orderArr.
+     The fields should not be accessible outside the class.                 (3)
+
+4.3  Create a constructor method that will read the contents of the text file 
+     StoreData.txt containing information about Products and Orders. The first 
+     ten lines contain data about Products. You may hardcode the number 10 in 
+     your solution. The remaining lines contain data about Orders. 
+     
+     The method should do the following:
+     • Check if the file StoreData.txt exists.
+     • Display a suitable error message if the file does not exist.
+     • Open the file for reading.
+     • Loop through the first ten lines of the text file. In each iteration:
+       − Read the line and split the data into separate parts.
+       − Create a Product object and store it in the next available position 
+         in the productArr array.
+       − Update the counter variable productSize.
+     • Loop through the remaining lines. In each iteration of the loop:
+       − Read the line and split the data into separate parts.
+       − Convert the order date into a Date object (the data is stored in 
+         the format yyyy<space>MM<space>dd).
+       − Create an Order object and store it in the next available position 
+         in the orderArr array.
+       − Update the counter variable orderSize.                            (15)
+
+4.4  Write code to create a toString method. This method should return a string 
+     with:
+     • The heading 'Products'.
+     • Underneath the heading the details of all Products, each on a new line.
+     • A blank line.
+     • The heading 'Orders'.
+     • Underneath the heading the details of all Orders, each on a new line.
+     Use the toString methods created in the previous classes.              (6)
+
+4.5  Code a method named getLowStockReport. This method should return the 
+     product name and stock level only for products that need restocking 
+     (stockLevel <= 10).
+     
+     The format must be as follows:
+     productName<space>stockLevel<space>"units"
+     
+     For example:
+     Wireless Mouse 8 units                                                 (6)
+                                                                            [31]
+
+================================================================================
+QUESTION 5: Creating a User Interface - StoreUI                        [4 marks]
+================================================================================
+
+5.1  Write code to create a text-based user interface called StoreUI that will 
+     allow simple input and output.                                         (1)
+
+5.2  Declare and instantiate a StoreManager object.                        (1)
+
+5.3  Write code to call the appropriate method in the StoreManager class to 
+     display a list of all Product objects and Order objects.
+     
+     Sample output format:
+     Products
+     PROD001    Laptop Computer    25    899.99
+     PROD002    Wireless Mouse    8    29.99
+     
+     Orders
+     ORD001    John Smith    Processing    2024-10-15                       (1)
+
+5.4  Write code to call the appropriate method in the StoreManager class to 
+     display all products that need restocking.
+     
+     Sample output:
+     Wireless Mouse 8 units                                                 (1)
+                                                                             [4]
+
+================================================================================
+END OF PRACTICE PAPER 4
+TOTAL: 68 marks
+================================================================================
+
+NOTES FOR LEARNERS:
+• This paper introduces working with double/float data types
+• Practice rounding calculations to specific decimal places
+• String validation becomes more complex (checking if contains only digits)
+• Calculating days between dates is a common requirement
+• The getLowStockReport combines a boolean method with filtering
+• Remember to handle currency values carefully with proper rounding
+
+SAMPLE DATA FILE: StoreData.txt
+PROD001#Laptop Computer#25#899.99
+PROD002#Wireless Mouse#8#29.99
+PROD003#USB Cable#45#12.50
+PROD004#Keyboard#15#49.99
+PROD005#Monitor#6#299.99
+PROD006#Headphones#30#79.99
+PROD007#Webcam#12#89.99
+PROD008#External SSD#9#119.99
+PROD009#Printer#20#189.99
+PROD010#Router#5#59.99
+ORD001#John Smith#2#2024 10 15
+ORD002#Sarah Johnson#3#2024 10 10
+ORD003#12345#1#2024 10 20
+ORD004#Mike Davis#4#2024 09 25
+ORD005#Emily Brown#2#2024 10 18
+ORD006#Alex Wilson#1#2024 10 22
+ORD007#Jessica Lee#3#2024 10 12
+ORD008#67890#2#2024 10 19
+ORD009#David Clark#4#2024 09 30
+ORD010#Lisa Taylor#1#2024 10 23
+
+================================================================================

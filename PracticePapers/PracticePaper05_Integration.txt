@@ -1,0 +1,241 @@
+================================================================================
+IEB INFORMATION TECHNOLOGY PRACTICE PAPER 5
+INTEGRATION - ADVANCED+ LEVEL
+Questions 2-5: Advanced Array Processing and Data Analysis
+================================================================================
+
+SCENARIO:
+A car rental company wants to manage their vehicle fleet and rental bookings. 
+You will create classes to represent vehicles and rentals, and a system to 
+analyze rental patterns and vehicle utilization.
+
+================================================================================
+QUESTION 2: Creating a Class with Complex Logic - Vehicle             [13 marks]
+================================================================================
+
+Use the class diagram below to create a new class called Vehicle. This class 
+will store the details of a rental vehicle.
+
+Vehicle
+Fields:
+- registrationNumber : string
+- vehicleModel : string
+- dailyRate : double
+- mileage : integer
+
+Methods:
++ Constructor(inReg : string, inModel : string, 
+              inRate : double, inMileage : integer)
++ getRegistrationNumber() : string
++ getVehicleModel() : string
++ getDailyRate() : double
++ getMileage() : integer
++ getMaintenanceStatus() : string
++ toString() : string
+
+2.1  Create a new class named Vehicle with the registrationNumber, vehicleModel, 
+     dailyRate and mileage fields, as shown in the class diagram. These fields 
+     must not be accessible outside the class.                              (3)
+
+2.2  Write code to create a parameterised constructor method that will accept 
+     parameters for all fields, as shown in the class diagram and assign these 
+     values to the corresponding fields.                                    (3)
+
+2.3  Create accessor methods for the registrationNumber, vehicleModel, 
+     dailyRate and mileage fields.                                          (2)
+
+2.4  Code a method called getMaintenanceStatus that returns a string based on 
+     the mileage:
+     • "Urgent Service Required" if mileage >= 100000
+     • "Service Due Soon" if mileage >= 80000 and < 100000
+     • "Good Condition" if mileage < 80000                                  (3)
+
+2.5  Create a toString method that returns registration number, model, daily 
+     rate and mileage in the format:
+     registrationNumber<tab>vehicleModel<tab>dailyRate<tab>mileage
+     
+     For example:
+     ABC123    Toyota Corolla    450.00    65000                            (2)
+                                                                            [13]
+
+================================================================================
+QUESTION 3: Creating a Complex Class - Rental                         [20 marks]
+================================================================================
+
+Use the class diagram below to create a new class called Rental. This class will 
+store the details of a vehicle rental booking.
+
+Rental
+Fields:
+- rentalID : string
+- customerName : string
+- vehicleReg : string
+- rentalDays : integer
+- rentalCategory : integer
+- startDate : date
++ ECONOMY = 1 : integer
++ STANDARD = 2 : integer
++ PREMIUM = 3 : integer
++ LUXURY = 4 : integer
+
+Methods:
++ Constructor(inID : string, inCustomer : string, inReg : string,
+              inDays : integer, inCategory : integer, inDate : date)
++ getRentalID() : string
++ getStartDate() : date
++ getRentalCategory() : string
++ setRentalCategory(inCategory : integer)
++ isLongTerm() : boolean
++ toString() : string
+
+3.1  Create a new class named Rental with the rentalID, customerName, 
+     vehicleReg, rentalDays, rentalCategory and startDate fields as shown in 
+     the class diagram. These fields must not be accessible outside the class. (3)
+
+3.2  Add the class constants ECONOMY, STANDARD, PREMIUM and LUXURY as shown in 
+     the class diagram.                                                     (2)
+
+3.3  Code a parameterised constructor method that will accept parameters for all 
+     fields as shown in the class diagram. Assign these values to the rentalID, 
+     vehicleReg, rentalDays, rentalCategory and startDate fields.
+     
+     Assign the customerName field as follows:
+     o If the inCustomer parameter starts with "CORP", assign "Corporate: " + 
+       inCustomer to the customerName field.
+     o Otherwise, assign the inCustomer parameter to the customerName field. (5)
+
+3.4  Add accessor methods for the rentalID and startDate fields of the class. (2)
+
+3.5  Code a getRentalCategory method to return a string representing the 
+     category of the Rental. This method must return:
+     
+     • 'Economy' if the rentalCategory is ECONOMY
+     • 'Standard' if the rentalCategory is STANDARD
+     • 'Premium' if the rentalCategory is PREMIUM
+     • 'Luxury' if the rentalCategory is LUXURY
+     • 'Not Categorized' if the rentalCategory is anything else             (4)
+
+3.6  Code a setRentalCategory method as shown in the class diagram to assign 
+     the rentalCategory of the Rental.                                      (2)
+
+3.7  Code an isLongTerm method that returns true if rentalDays is greater than 
+     or equal to 7, false otherwise.                                        (2)
+                                                                            [20]
+
+================================================================================
+QUESTION 4: Creating an Advanced Manager Class - RentalManager        [31 marks]
+================================================================================
+
+4.1  Create a class called RentalManager.                                  (1)
+
+4.2  Create four fields for the RentalManager class as described below:
+     • An array called vehicleArr to store up to 100 Vehicle objects.
+     • A counter called vehicleSize to count objects added to vehicleArr.
+     • An array called rentalArr to store up to 100 Rental objects.
+     • A counter called rentalSize to count objects added to rentalArr.
+     The fields should not be accessible outside the class.                 (3)
+
+4.3  Create a constructor method that will read the contents of the text file 
+     RentalData.txt containing information about Vehicles and Rentals. The 
+     first twelve lines contain data about Vehicles. You may hardcode the 
+     number 12 in your solution. The remaining lines contain data about 
+     Rentals. 
+     
+     The method should do the following:
+     • Check if the file RentalData.txt exists.
+     • Display a suitable error message if the file does not exist.
+     • Open the file for reading.
+     • Loop through the first twelve lines of the text file. In each iteration:
+       − Read the line and split the data into separate parts.
+       − Create a Vehicle object and store it in the next available position 
+         in the vehicleArr array.
+       − Update the counter variable vehicleSize.
+     • Loop through the remaining lines. In each iteration of the loop:
+       − Read the line and split the data into separate parts.
+       − Convert the start date into a Date object (the data is stored in 
+         the format yyyy<space>MM<space>dd).
+       − Create a Rental object and store it in the next available position 
+         in the rentalArr array.
+       − Update the counter variable rentalSize.                           (15)
+
+4.4  Write code to create a toString method. This method should return a string 
+     with:
+     • The heading 'Vehicles'.
+     • Underneath the heading the details of all Vehicles, each on a new line.
+     • A blank line.
+     • The heading 'Rentals'.
+     • Underneath the heading the details of all Rentals, each on a new line.
+     Use the toString methods created in the previous classes.              (6)
+
+4.5  Code a method named getRevenueByCategory. This method should accept a 
+     rental category (integer) as a parameter. The method should calculate and 
+     return the total revenue for all rentals in that category. Revenue for 
+     each rental is calculated by finding the matching vehicle's daily rate and 
+     multiplying it by the rental days.
+     
+     The format must be:
+     "Total revenue: R"<space>totalRevenue
+     
+     For example:
+     Total revenue: R 12450.00                                              (6)
+                                                                            [31]
+
+================================================================================
+QUESTION 5: Creating an Advanced UI - RentalUI                         [4 marks]
+================================================================================
+
+5.1  Write code to create a text-based user interface called RentalUI that 
+     will allow simple input and output.                                    (1)
+
+5.2  Declare and instantiate a RentalManager object.                       (1)
+
+5.3  Write code to call the appropriate method in the RentalManager class to 
+     display a list of all Vehicle objects and Rental objects.              (1)
+
+5.4  Write code to call the getRevenueByCategory method with the PREMIUM 
+     category constant and display the result.
+     
+     Sample output:
+     Total revenue: R 12450.00                                              (1)
+                                                                             [4]
+
+================================================================================
+END OF PRACTICE PAPER 5
+TOTAL: 68 marks
+================================================================================
+
+NOTES FOR LEARNERS:
+• This paper requires matching data across two arrays
+• Practice finding objects in one array based on fields in another
+• String manipulation includes checking prefixes (startsWith)
+• The revenue calculation requires accessing multiple arrays
+• You'll need nested loops to calculate revenue by category
+• Remember to handle cases where vehicle registration doesn't match
+
+SAMPLE DATA FILE: RentalData.txt
+ABC123#Toyota Corolla#450.00#65000
+XYZ789#Honda Civic#480.00#42000
+DEF456#BMW 3 Series#850.00#78000
+GHI789#Mercedes C-Class#950.00#35000
+JKL012#VW Polo#380.00#95000
+MNO345#Hyundai i20#350.00#52000
+PQR678#Audi A4#920.00#68000
+STU901#Ford Fiesta#420.00#105000
+VWX234#Nissan Micra#390.00#48000
+YZA567#Mazda 3#520.00#71000
+BCD890#Kia Rio#400.00#88000
+EFG123#Toyota Fortuner#1200.00#92000
+RENT001#John Smith#ABC123#5#2#2024 10 15
+RENT002#CORP-TechCo#DEF456#10#3#2024 10 10
+RENT003#Sarah Johnson#JKL012#3#1#2024 10 20
+RENT004#Mike Davis#GHI789#7#4#2024 10 08
+RENT005#CORP-Logistics#EFG123#14#3#2024 10 12
+RENT006#Emily Brown#MNO345#4#1#2024 10 18
+RENT007#Alex Wilson#PQR678#6#3#2024 10 16
+RENT008#Jessica Lee#VWX234#2#1#2024 10 22
+RENT009#David Clark#YZA567#8#2#2024 10 14
+RENT010#Lisa Taylor#BCD890#5#1#2024 10 19
+RENT011#CORP-Consulting#DEF456#12#3#2024 10 11
+RENT012#Ryan Smith#XYZ789#3#2#2024 10 21
+
+================================================================================

@@ -1,0 +1,251 @@
+================================================================================
+IEB INFORMATION TECHNOLOGY PRACTICE PAPER 6
+COMPLEX SCENARIOS - EXPERT LEVEL
+Questions 2-5: Advanced Data Structures and Complex Business Logic
+================================================================================
+
+SCENARIO:
+A concert venue management system needs to track artists, performances, and 
+ticket sales. You will create classes to manage complex relationships between 
+artists, concerts, and revenue tracking.
+
+================================================================================
+QUESTION 2: Creating a Class with Advanced Calculations - Performance [13 marks]
+================================================================================
+
+Use the class diagram below to create a new class called Performance. This class 
+will store the details of a concert performance.
+
+Performance
+Fields:
+- performanceID : string
+- artistName : string
+- ticketsSold : integer
+- ticketPrice : double
+- venueCost : double
+
+Methods:
++ Constructor(inID : string, inArtist : string, inSold : integer,
+              inPrice : double, inCost : double)
++ getPerformanceID() : string
++ getArtistName() : string
++ getTicketsSold() : integer
++ getRevenue() : double
++ getProfit() : double
++ getProfitMargin() : double
++ toString() : string
+
+2.1  Create a new class named Performance with the performanceID, artistName, 
+     ticketsSold, ticketPrice and venueCost fields, as shown in the class 
+     diagram. These fields must not be accessible outside the class.        (3)
+
+2.2  Write code to create a parameterised constructor method that will accept 
+     parameters for all fields, as shown in the class diagram and assign these 
+     values to the corresponding fields.                                    (3)
+
+2.3  Create accessor methods for the performanceID, artistName and ticketsSold 
+     fields.                                                                (2)
+
+2.4  Code a method called getRevenue that calculates total revenue by 
+     multiplying ticketsSold by ticketPrice. Return as double rounded to 2 
+     decimal places.                                                        (1)
+
+2.5  Code a method called getProfit that calculates profit by subtracting 
+     venueCost from revenue. Return as double rounded to 2 decimal places.  (2)
+
+2.6  Code a method called getProfitMargin that returns the profit as a 
+     percentage of revenue. Calculate as (profit / revenue) * 100. Return 0.0 
+     if revenue is 0. Round to 1 decimal place.                             (2)
+                                                                            [13]
+
+================================================================================
+QUESTION 3: Creating a Multi-Feature Class - Artist                   [20 marks]
+================================================================================
+
+Use the class diagram below to create a new class called Artist. This class will 
+store the details of a performing artist and their genre.
+
+Artist
+Fields:
+- stageName : string
+- realName : string
+- genre : integer
+- debutYear : integer
++ ROCK = 1 : integer
++ POP = 2 : integer
++ JAZZ = 3 : integer
++ CLASSICAL = 4 : integer
++ HIPHOP = 5 : integer
+
+Methods:
++ Constructor(inStage : string, inReal : string, 
+              inGenre : integer, inYear : integer)
++ getStageName() : string
++ getDebutYear() : integer
++ getGenre() : string
++ setGenre(inGenre : integer)
++ getYearsActive() : integer
++ isVeteran() : boolean
++ toString() : string
+
+3.1  Create a new class named Artist with the stageName, realName, genre and 
+     debutYear fields as shown in the class diagram. These fields must not be 
+     accessible outside the class.                                          (3)
+
+3.2  Add the class constants ROCK, POP, JAZZ, CLASSICAL and HIPHOP as shown in 
+     the class diagram.                                                     (2)
+
+3.3  Code a parameterised constructor method that will accept parameters for 
+     all fields as shown in the class diagram. Assign these values to the 
+     stageName, genre and debutYear fields.
+     
+     Assign the realName field as follows:
+     o If the inReal parameter contains the word "Unknown" (case insensitive), 
+       assign inStage to the realName field.
+     o Otherwise, assign the inReal parameter to the realName field.        (5)
+
+3.4  Add accessor methods for the stageName and debutYear fields of the class. (2)
+
+3.5  Code a getGenre method to return a string representing the genre of the 
+     Artist. This method must return:
+     
+     • 'Rock' if the genre is ROCK
+     • 'Pop' if the genre is POP
+     • 'Jazz' if the genre is JAZZ
+     • 'Classical' if the genre is CLASSICAL
+     • 'Hip Hop' if the genre is HIPHOP
+     • 'Other' if the genre is anything else                                (3)
+
+3.6  Code a setGenre method as shown in the class diagram to assign the genre 
+     of the Artist.                                                         (1)
+
+3.7  Code a getYearsActive method that calculates how many years the artist has 
+     been active. Subtract debutYear from the current year. Do NOT hardcode 
+     the current year.                                                      (2)
+
+3.8  Code an isVeteran method that returns true if the artist has been active 
+     for 15 years or more, false otherwise.                                 (2)
+                                                                            [20]
+
+================================================================================
+QUESTION 4: Creating a Complex Manager Class - VenueManager           [31 marks]
+================================================================================
+
+4.1  Create a class called VenueManager.                                   (1)
+
+4.2  Create four fields for the VenueManager class as described below:
+     • An array called performanceArr to store up to 100 Performance objects.
+     • A counter called performanceSize to count objects added to performanceArr.
+     • An array called artistArr to store up to 100 Artist objects.
+     • A counter called artistSize to count objects added to artistArr.
+     The fields should not be accessible outside the class.                 (3)
+
+4.3  Create a constructor method that will read the contents of the text file 
+     VenueData.txt containing information about Artists and Performances. The 
+     first fifteen lines contain data about Artists. You may hardcode the 
+     number 15 in your solution. The remaining lines contain data about 
+     Performances. 
+     
+     The method should do the following:
+     • Check if the file VenueData.txt exists.
+     • Display a suitable error message if the file does not exist.
+     • Open the file for reading.
+     • Loop through the first fifteen lines of the text file. In each iteration:
+       − Read the line and split the data into separate parts.
+       − Create an Artist object and store it in the next available position 
+         in the artistArr array.
+       − Update the counter variable artistSize.
+     • Loop through the remaining lines. In each iteration of the loop:
+       − Read the line and split the data into separate parts.
+       − Create a Performance object and store it in the next available 
+         position in the performanceArr array.
+       − Update the counter variable performanceSize.                      (15)
+
+4.4  Write code to create a toString method. This method should return a string 
+     with:
+     • The heading 'Artists'.
+     • Underneath the heading the details of all Artists, each on a new line.
+     • A blank line.
+     • The heading 'Performances'.
+     • Underneath the heading the details of all Performances, each on a new line.
+     Use the toString methods created in the previous classes.              (6)
+
+4.5  Code a method named getTopEarningArtists. This method should return the 
+     artist name and total profit only for artists whose total profit across 
+     all their performances is greater than R50000. Calculate total profit by 
+     summing the profit of all performances for each artist.
+     
+     The format must be as follows:
+     artistName<space>"R"<space>totalProfit
+     
+     For example:
+     The Rockers R 75250.50                                                 (6)
+                                                                            [31]
+
+================================================================================
+QUESTION 5: Creating a Feature-Rich UI - VenueUI                       [4 marks]
+================================================================================
+
+5.1  Write code to create a text-based user interface called VenueUI that will 
+     allow simple input and output.                                         (1)
+
+5.2  Declare and instantiate a VenueManager object.                        (1)
+
+5.3  Write code to call the appropriate method in the VenueManager class to 
+     display a list of all Artist objects and Performance objects.          (1)
+
+5.4  Write code to call the appropriate method in the VenueManager class to 
+     display all top earning artists.
+     
+     Sample output:
+     The Rockers R 75250.50
+     Jazz Masters R 62100.00                                                (1)
+                                                                             [4]
+
+================================================================================
+END OF PRACTICE PAPER 6
+TOTAL: 68 marks
+================================================================================
+
+NOTES FOR LEARNERS:
+• This paper involves complex financial calculations
+• Practice calculating profit margins as percentages
+• String manipulation includes case-insensitive checking
+• The top earners method requires aggregating data per artist
+• You'll need to sum values across multiple performances for the same artist
+• Remember to handle division by zero in profit margin calculations
+• Veterans are determined by years of activity (current year - debut year)
+
+SAMPLE DATA FILE: VenueData.txt
+The Rockers#Michael Stone#1#2005
+Jazz Masters#Sarah Williams#3#2008
+Pop Stars#UNKNOWN#2#2015
+Classical Ensemble#David Chen#4#1995
+Hip Hop Crew#Marcus Johnson#5#2012
+Electric Vibes#Lisa Anderson#1#2010
+Smooth Sounds#Robert Taylor#3#2007
+Pop Sensation#Emily Davis#2#2018
+Rock Legends#Unknown Artist#1#2000
+Jazz Fusion#Amanda White#3#2011
+Urban Beats#Chris Martin#5#2014
+Symphony Orchestra#George Wilson#4#1990
+Indie Rock#Jessica Brown#1#2016
+Soul Singers#Kevin Lee#2#2009
+Classical Piano#Maria Garcia#4#1998
+PERF001#The Rockers#1500#350.00#75000.00
+PERF002#Jazz Masters#800#280.00#45000.00
+PERF003#Pop Stars#2000#250.00#80000.00
+PERF004#Classical Ensemble#600#400.00#60000.00
+PERF005#Hip Hop Crew#1800#220.00#95000.00
+PERF006#The Rockers#1200#380.00#68000.00
+PERF007#Smooth Sounds#900#300.00#52000.00
+PERF008#Pop Sensation#2500#200.00#120000.00
+PERF009#Rock Legends#1100#320.00#71000.00
+PERF010#Jazz Fusion#750#290.00#48000.00
+PERF011#Jazz Masters#950#310.00#55000.00
+PERF012#Urban Beats#1600#240.00#88000.00
+PERF013#Symphony Orchestra#500#450.00#58000.00
+PERF014#The Rockers#1350#360.00#72000.00
+PERF015#Soul Singers#1050#270.00#63000.00
+
+================================================================================

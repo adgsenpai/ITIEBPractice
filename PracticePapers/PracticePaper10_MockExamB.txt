@@ -1,0 +1,255 @@
+================================================================================
+IEB INFORMATION TECHNOLOGY PRACTICE PAPER 10
+MOCK EXAM - FULL SIMULATION (Style B)
+Questions 2-5: Complete Exam Simulation - University Course Management
+================================================================================
+
+SCENARIO:
+A university needs to manage their course offerings and student enrollments. 
+You will create a complete system to handle courses, student records, and 
+enrollment analysis including grade tracking and course capacity management.
+
+================================================================================
+QUESTION 2: Creating a Data Class - Course                            [13 marks]
+================================================================================
+
+Use the class diagram below to create a new class called Course. This class will 
+store the details of a university course.
+
+Course
+Fields:
+- courseCode : string
+- courseName : string
+- credits : integer
+- maxEnrollment : integer
+
+Methods:
++ Constructor(inCode : string, inName : string, 
+              inCredits : integer, inMax : integer)
++ getCourseCode() : string
++ getCourseName() : string
++ getCredits() : integer
++ isMajorCourse() : boolean
++ toString() : string
+
+2.1  Create a new class named Course with the courseCode, courseName, credits 
+     and maxEnrollment fields, as shown in the class diagram. These fields must 
+     not be accessible outside the class.                                   (3)
+
+2.2  Write code to create a parameterised constructor method that will accept 
+     parameters for all fields, as shown in the class diagram and assign these 
+     values to the corresponding fields.                                    (3)
+
+2.3  Create accessor methods for the courseCode, courseName and credits fields. (2)
+
+2.4  A course is considered a major course if it has 15 or more credits. Code 
+     a method called isMajorCourse. This method should return true if the 
+     course is a major course, false otherwise.                             (3)
+
+2.5  Create a toString method that will return a string that combines the 
+     values of the courseCode, courseName, and credits fields. The format of 
+     the string should be as follows:
+     
+     courseCode<tab>courseName<tab>credits
+     
+     For example:
+     CS101    Introduction to Programming    20                             (2)
+                                                                            [13]
+
+================================================================================
+QUESTION 3: Creating an Enhanced Class - Enrollment                   [20 marks]
+================================================================================
+
+Use the class diagram below to create a new class called Enrollment. This class 
+will store the details of a student's enrollment in a course.
+
+Enrollment
+Fields:
+- enrollmentID : string
+- studentName : string
+- courseCode : string
+- grade : integer
+- enrollmentDate : date
++ GRADE_A = 1 : integer
++ GRADE_B = 2 : integer
++ GRADE_C = 3 : integer
++ GRADE_D = 4 : integer
++ GRADE_F = 5 : integer
+
+Methods:
++ Constructor(inID : string, inStudent : string, inCourse : string,
+              inGrade : integer, inDate : date)
++ getEnrollmentID() : string
++ getEnrollmentDate() : date
++ getGrade() : string
++ setGrade(inGrade : integer)
++ isPassing() : boolean
++ toString() : string
+
+3.1  Create a new class named Enrollment with the enrollmentID, studentName, 
+     courseCode, grade and enrollmentDate fields as shown in the class diagram. 
+     These fields must not be accessible outside the class.                 (3)
+
+3.2  Add the class constants GRADE_A, GRADE_B, GRADE_C, GRADE_D and GRADE_F 
+     as shown in the class diagram.                                         (2)
+
+3.3  Code a parameterised constructor method that will accept parameters for 
+     all fields as shown in the class diagram. Assign these values to the 
+     enrollmentID, courseCode, grade and enrollmentDate fields.
+     
+     Assign the studentName field as follows:
+     o If the inStudent parameter contains any digit (0-9), assign "Student " 
+       + enrollmentID to the studentName field.
+     o Otherwise, assign the inStudent parameter to the studentName field.  (5)
+
+3.4  Add accessor methods for the enrollmentID and enrollmentDate fields of 
+     the class.                                                             (2)
+
+3.5  Code a getGrade method to return a string representing the grade of the 
+     Enrollment. This method must return:
+     
+     • 'A (Excellent)' if the grade is GRADE_A
+     • 'B (Good)' if the grade is GRADE_B
+     • 'C (Satisfactory)' if the grade is GRADE_C
+     • 'D (Pass)' if the grade is GRADE_D
+     • 'F (Fail)' if the grade is GRADE_F
+     • 'Not Graded' if the grade is anything else                           (4)
+
+3.6  Code a setGrade method as shown in the class diagram to assign the grade 
+     of the Enrollment.                                                     (2)
+
+3.7  Code an isPassing method that returns true if the grade is GRADE_A, 
+     GRADE_B, GRADE_C, or GRADE_D. Return false if the grade is GRADE_F or 
+     anything else.                                                         (2)
+                                                                            [20]
+
+================================================================================
+QUESTION 4: Creating a Comprehensive Manager - UniversityManager      [31 marks]
+================================================================================
+
+4.1  Create a class called UniversityManager.                              (1)
+
+4.2  Create four fields for the UniversityManager class as described below:
+     • An array called enrollmentArr to store up to 100 Enrollment objects.
+     • A counter called enrollmentSize to count objects added to enrollmentArr.
+     • An array called courseArr to store up to 100 Course objects.
+     • A counter called courseSize to count objects added to courseArr.
+     The fields should not be accessible outside the class.                 (3)
+
+4.3  Create a constructor method that will read the contents of the text file 
+     UniversityData.txt containing information about Courses and Enrollments. 
+     The first eight lines contain data about Courses. You may hardcode the 
+     number 8 in your solution. The remaining lines contain data about 
+     Enrollments. 
+     
+     The method should do the following:
+     • Check if the file UniversityData.txt exists.
+     • Display a suitable error message if the file does not exist.
+     • Open the file for reading.
+     • Loop through the first eight lines of the text file. In each iteration:
+       − Read the line and split the data into separate parts.
+       − Create a Course object and store it in the next available position 
+         in the courseArr array.
+       − Update the counter variable courseSize.
+     • Loop through the remaining lines. In each iteration of the loop:
+       − Read the line and split the data into separate parts.
+       − Convert the enrollment date into a Date object (the data is stored 
+         in the format yyyy<space>MM<space>dd).
+       − Create an Enrollment object and store it in the next available 
+         position in the enrollmentArr array.
+       − Update the counter variable enrollmentSize.                       (15)
+
+4.4  Write code to create a toString method. This method should return a string 
+     with:
+     • The heading 'Courses'.
+     • Underneath the heading the details of all Courses, each on a new line.
+     • A blank line.
+     • The heading 'Enrollments'.
+     • Underneath the heading the details of all Enrollments, each on a new line.
+     Use the toString methods created in the previous classes.              (6)
+
+4.5  Code a method named getPopularCourses. This method should return the 
+     course name and enrollment count only for courses that:
+     • Are major courses (15+ credits)
+     • Have more than 5 students enrolled
+     
+     Count enrollments by counting how many Enrollment objects have a matching 
+     courseCode.
+     
+     The format must be as follows:
+     courseName<space>enrollmentCount<space>"students"
+     
+     For example:
+     Introduction to Programming 8 students                                 (6)
+                                                                            [31]
+
+================================================================================
+QUESTION 5: Creating a User Interface - UniversityUI                   [4 marks]
+================================================================================
+
+5.1  Write code to create a text-based user interface called UniversityUI that 
+     will allow simple input and output.                                    (1)
+
+5.2  Declare and instantiate a UniversityManager object.                   (1)
+
+5.3  Write code to call the appropriate method in the UniversityManager class 
+     to display a list of all Course objects and Enrollment objects.        (1)
+
+5.4  Write code to call the appropriate method in the UniversityManager class 
+     to display all popular courses.
+     
+     Sample output:
+     Introduction to Programming 8 students
+     Data Structures 7 students                                             (1)
+                                                                             [4]
+
+================================================================================
+END OF PRACTICE PAPER 10
+TOTAL: 68 marks
+================================================================================
+
+NOTES FOR LEARNERS:
+• This is a full simulation with a different scenario from Paper 9
+• Practice managing two related arrays (courses and enrollments)
+• The popular courses method requires counting across arrays
+• String validation includes checking for digits in text
+• Remember that passing grades include D (not just A, B, C)
+• Major courses are identified by credit count
+• Test thoroughly with the sample data provided
+• Pay attention to the relationship between courseCode in both classes
+
+SAMPLE DATA FILE: UniversityData.txt
+CS101#Introduction to Programming#20#50
+CS102#Data Structures#20#45
+MTH201#Calculus I#15#60
+ENG101#English Composition#10#40
+PHY101#Physics I#18#35
+BIO101#Biology Fundamentals#12#50
+HIS101#World History#8#55
+ART101#Introduction to Art#6#30
+E001#John Smith#CS101#1#2024 01 15
+E002#Sarah Johnson#CS101#2#2024 01 16
+E003#Mike123#CS102#1#2024 01 15
+E004#Emily Brown#CS101#1#2024 01 17
+E005#David Wilson#MTH201#3#2024 01 15
+E006#Lisa456#CS102#2#2024 01 16
+E007#James Anderson#CS101#2#2024 01 18
+E008#Maria Garcia#ENG101#4#2024 01 15
+E009#Robert Lee#PHY101#1#2024 01 19
+E010#Jennifer White#CS101#1#2024 01 16
+E011#William789#CS102#3#2024 01 17
+E012#Amanda Clark#BIO101#2#2024 01 15
+E013#Charles Rodriguez#CS101#2#2024 01 20
+E014#Jessica Martinez#HIS101#4#2024 01 16
+E015#Matthew Lopez#CS102#1#2024 01 18
+E016#Ashley Gonzalez#CS101#1#2024 01 17
+E017#Christopher Perez#ART101#3#2024 01 19
+E018#Olivia Davis#MTH201#2#2024 01 15
+E019#Daniel Brown#CS102#1#2024 01 21
+E020#Sophia Taylor#PHY101#2#2024 01 16
+E021#Ryan234#CS102#2#2024 01 18
+E022#Isabella Moore#CS101#3#2024 01 17
+E023#Ethan Jackson#MTH201#1#2024 01 20
+E024#Mia Harris#CS102#1#2024 01 19
+
+================================================================================

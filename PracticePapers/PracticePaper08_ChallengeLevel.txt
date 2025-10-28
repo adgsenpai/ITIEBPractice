@@ -1,0 +1,269 @@
+================================================================================
+IEB INFORMATION TECHNOLOGY PRACTICE PAPER 8
+CHALLENGE LEVEL - EXPERT+ LEVEL
+Questions 2-5: Advanced Algorithms and Complex Data Analysis
+================================================================================
+
+SCENARIO:
+A sports league management system tracks teams, matches, and player statistics. 
+You will create classes to manage complex game data, calculate rankings, and 
+analyze performance metrics across multiple dimensions.
+
+================================================================================
+QUESTION 2: Creating a Class with Complex Metrics - Match             [13 marks]
+================================================================================
+
+Use the class diagram below to create a new class called Match. This class will 
+store the details of a sports match.
+
+Match
+Fields:
+- matchID : string
+- homeTeam : string
+- awayTeam : string
+- homeScore : integer
+- awayScore : integer
+- attendance : integer
+
+Methods:
++ Constructor(inID : string, inHome : string, inAway : string,
+              inHomeScore : integer, inAwayScore : integer, 
+              inAttendance : integer)
++ getMatchID() : string
++ getHomeTeam() : string
++ getAwayTeam() : string
++ getWinner() : string
++ getScoreDifference() : integer
++ isHighScoring() : boolean
++ getAttendanceCategory() : string
++ toString() : string
+
+2.1  Create a new class named Match with the matchID, homeTeam, awayTeam, 
+     homeScore, awayScore and attendance fields, as shown in the class diagram. 
+     These fields must not be accessible outside the class.                 (3)
+
+2.2  Write code to create a parameterised constructor method that will accept 
+     parameters for all fields, as shown in the class diagram and assign these 
+     values to the corresponding fields.                                    (3)
+
+2.3  Create accessor methods for the matchID, homeTeam and awayTeam fields. (2)
+
+2.4  Code a method called getWinner that returns:
+     • The homeTeam name if homeScore > awayScore
+     • The awayTeam name if awayScore > homeScore
+     • "Draw" if scores are equal                                           (2)
+
+2.5  Code a method called getScoreDifference that returns the absolute 
+     difference between homeScore and awayScore.                            (1)
+
+2.6  Code a method called isHighScoring that returns true if the total goals 
+     (homeScore + awayScore) is greater than or equal to 5, false otherwise. (1)
+
+2.7  Code a method called getAttendanceCategory that returns:
+     • "Sold Out" if attendance >= 50000
+     • "High Attendance" if attendance >= 30000 and < 50000
+     • "Medium Attendance" if attendance >= 10000 and < 30000
+     • "Low Attendance" if attendance < 10000                               (1)
+                                                                            [13]
+
+================================================================================
+QUESTION 3: Creating a Multi-Feature Class - Team                     [20 marks]
+================================================================================
+
+Use the class diagram below to create a new class called Team. This class will 
+store the details of a sports team and their division.
+
+Team
+Fields:
+- teamName : string
+- coach : string
+- division : integer
+- foundedYear : integer
++ PREMIER = 1 : integer
++ CHAMPIONSHIP = 2 : integer
++ LEAGUE_ONE = 3 : integer
++ LEAGUE_TWO = 4 : integer
+
+Methods:
++ Constructor(inTeam : string, inCoach : string, 
+              inDivision : integer, inYear : integer)
++ getTeamName() : string
++ getFoundedYear() : integer
++ getDivision() : string
++ setDivision(inDivision : integer)
++ getAge() : integer
++ isHistoric() : boolean
++ getCoachInitials() : string
++ toString() : string
+
+3.1  Create a new class named Team with the teamName, coach, division and 
+     foundedYear fields as shown in the class diagram. These fields must not 
+     be accessible outside the class.                                       (3)
+
+3.2  Add the class constants PREMIER, CHAMPIONSHIP, LEAGUE_ONE and LEAGUE_TWO 
+     as shown in the class diagram.                                         (2)
+
+3.3  Code a parameterised constructor method that will accept parameters for 
+     all fields as shown in the class diagram. Assign these values to the 
+     teamName, division and foundedYear fields.
+     
+     Assign the coach field as follows:
+     o If the inCoach parameter is empty OR contains only spaces, assign 
+       "TBD" to the coach field.
+     o Otherwise, assign the inCoach parameter to the coach field.          (5)
+
+3.4  Add accessor methods for the teamName and foundedYear fields of the class. (2)
+
+3.5  Code a getDivision method to return a string representing the division of 
+     the Team. This method must return:
+     
+     • 'Premier Division' if the division is PREMIER
+     • 'Championship Division' if the division is CHAMPIONSHIP
+     • 'League One' if the division is LEAGUE_ONE
+     • 'League Two' if the division is LEAGUE_TWO
+     • 'Unassigned' if the division is anything else                        (3)
+
+3.6  Code a setDivision method as shown in the class diagram to assign the 
+     division of the Team.                                                  (1)
+
+3.7  Code a getAge method that returns how many years old the team is by 
+     subtracting foundedYear from the current year. Do NOT hardcode the 
+     current year.                                                          (1)
+
+3.8  Code an isHistoric method that returns true if the team is 50 years old 
+     or older, false otherwise.                                             (1)
+
+3.9  Code a getCoachInitials method that returns the initials of the coach. 
+     Extract the first letter of each word in the coach's name and concatenate 
+     them in uppercase. For example, "John Smith" returns "JS", "TBD" returns 
+     "T".                                                                   (2)
+                                                                            [20]
+
+================================================================================
+QUESTION 4: Creating a Complex Manager Class - LeagueManager          [31 marks]
+================================================================================
+
+4.1  Create a class called LeagueManager.                                  (1)
+
+4.2  Create four fields for the LeagueManager class as described below:
+     • An array called matchArr to store up to 100 Match objects.
+     • A counter called matchSize to count objects added to matchArr.
+     • An array called teamArr to store up to 100 Team objects.
+     • A counter called teamSize to count objects added to teamArr.
+     The fields should not be accessible outside the class.                 (3)
+
+4.3  Create a constructor method that will read the contents of the text file 
+     LeagueData.txt containing information about Teams and Matches. The first 
+     twelve lines contain data about Teams. You may hardcode the number 12 in 
+     your solution. The remaining lines contain data about Matches. 
+     
+     The method should do the following:
+     • Check if the file LeagueData.txt exists.
+     • Display a suitable error message if the file does not exist.
+     • Open the file for reading.
+     • Loop through the first twelve lines of the text file. In each iteration:
+       − Read the line and split the data into separate parts.
+       − Create a Team object and store it in the next available position 
+         in the teamArr array.
+       − Update the counter variable teamSize.
+     • Loop through the remaining lines. In each iteration of the loop:
+       − Read the line and split the data into separate parts.
+       − Create a Match object and store it in the next available position 
+         in the matchArr array.
+       − Update the counter variable matchSize.                            (15)
+
+4.4  Write code to create a toString method. This method should return a string 
+     with:
+     • The heading 'Teams'.
+     • Underneath the heading the details of all Teams, each on a new line.
+     • A blank line.
+     • The heading 'Matches'.
+     • Underneath the heading the details of all Matches, each on a new line.
+     Use the toString methods created in the previous classes.              (6)
+
+4.5  Code a method named getStandingsTable. This method should calculate and 
+     return the team name, wins, draws, and total points for each team, but 
+     ONLY for teams that have earned at least 10 points.
+     
+     Points are calculated as follows:
+     • Win (team appears as winner in any match): 3 points
+     • Draw (team appears in a match that ended in a draw): 1 point
+     • Loss: 0 points
+     
+     The format must be as follows:
+     teamName<space>wins<space>draws<space>points
+     
+     For example:
+     Eagles 5 2 17                                                          (6)
+                                                                            [31]
+
+================================================================================
+QUESTION 5: Creating an Advanced UI - LeagueUI                         [4 marks]
+================================================================================
+
+5.1  Write code to create a text-based user interface called LeagueUI that 
+     will allow simple input and output.                                    (1)
+
+5.2  Declare and instantiate a LeagueManager object.                       (1)
+
+5.3  Write code to call the appropriate method in the LeagueManager class to 
+     display a list of all Team objects and Match objects.                  (1)
+
+5.4  Write code to call the appropriate method in the LeagueManager class to 
+     display the standings table for qualifying teams.
+     
+     Sample output:
+     Eagles 5 2 17
+     Tigers 4 3 15                                                          (1)
+                                                                             [4]
+
+================================================================================
+END OF PRACTICE PAPER 8
+TOTAL: 68 marks
+================================================================================
+
+NOTES FOR LEARNERS:
+• This paper requires complex statistical calculations
+• The standings table needs to iterate through all matches for each team
+• Practice counting wins, draws, and losses for teams
+• String processing includes extracting initials from names
+• Remember to check for empty strings and whitespace
+• The absolute difference can be calculated using Math.abs() or conditionals
+• Points calculation: wins * 3 + draws * 1
+• You need to determine if a team won, drew, or lost each match they played in
+
+SAMPLE DATA FILE: LeagueData.txt
+Eagles#Michael Johnson#1#1950
+Tigers#Sarah Williams#1#1965
+Lions#David Brown#2#1975
+Panthers#Emily Davis#1#1982
+Wolves#   #2#1990
+Bears#Robert Wilson#3#1995
+Hawks#Lisa Anderson#1#1988
+Sharks#James Taylor#2#1972
+Dragons#Maria Garcia#1#1955
+Falcons#Christopher Lee#2#2000
+Rovers#Amanda White#3#2005
+United#TBD#1#1968
+M001#Eagles#Tigers#3#1#45000
+M002#Lions#Panthers#2#2#28000
+M003#Bears#Hawks#1#3#15000
+M004#Tigers#Dragons#2#0#52000
+M005#Eagles#Sharks#4#1#48000
+M006#Panthers#Falcons#1#1#35000
+M007#Wolves#Rovers#0#2#8000
+M008#Hawks#United#3#3#42000
+M009#Dragons#Eagles#2#3#51000
+M010#Tigers#Lions#2#1#39000
+M011#Sharks#Panthers#1#1#33000
+M012#Eagles#Hawks#3#0#47000
+M013#United#Tigers#2#2#44000
+M014#Panthers#Dragons#1#0#38000
+M015#Falcons#Wolves#2#1#12000
+M016#Eagles#United#2#1#49000
+M017#Tigers#Panthers#3#2#41000
+M018#Lions#Sharks#0#0#25000
+M019#Hawks#Dragons#2#1#36000
+M020#Eagles#Panthers#1#0#46000
+
+================================================================================
