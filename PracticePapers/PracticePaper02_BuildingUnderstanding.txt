@@ -1,0 +1,237 @@
+================================================================================
+IEB INFORMATION TECHNOLOGY PRACTICE PAPER 2
+BUILDING UNDERSTANDING - INTERMEDIATE LEVEL
+Questions 2-5: Object-Oriented Programming with Calculations
+================================================================================
+
+SCENARIO:
+A fitness center wants to track their clients and their workout sessions. 
+You will create classes to represent clients and workouts, and a system to 
+manage fitness data.
+
+================================================================================
+QUESTION 2: Creating a Class with Calculations - Workout              [13 marks]
+================================================================================
+
+Use the class diagram below to create a new class called Workout. This class 
+will store the details of a workout session.
+
+Workout
+Fields:
+- clientName : string
+- exerciseType : string
+- duration : integer (in minutes)
+- caloriesBurned : integer
+
+Methods:
++ Constructor(inClient : string, inExercise : string, 
+              inDuration : integer, inCalories : integer)
++ getClientName() : string
++ getExerciseType() : string
++ getDuration() : integer
++ getIntensity() : string
++ toString() : string
+
+2.1  Create a new class named Workout with the clientName, exerciseType, 
+     duration and caloriesBurned fields, as shown in the class diagram. These 
+     fields must not be accessible outside the class.                      (3)
+
+2.2  Write code to create a parameterised constructor method that will accept 
+     parameters for all fields, as shown in the class diagram and assign these 
+     values to the corresponding fields.                                    (3)
+
+2.3  Create accessor methods for the clientName, exerciseType and duration 
+     fields.                                                                (2)
+
+2.4  A workout is considered high intensity if the calories burned per minute 
+     is greater than or equal to 10. Code a method called getIntensity. This 
+     method should return:
+     • "High" if the workout is high intensity
+     • "Low" if the workout is not high intensity                           (3)
+
+2.5  Create a toString method that will return a string that combines the values 
+     of the clientName, exerciseType, duration and caloriesBurned fields. The 
+     format of the string should be as follows:
+     
+     clientName<tab>exerciseType<tab>duration<tab>caloriesBurned
+     
+     For example:
+     Sarah Johnson    Running    45    520                                  (2)
+                                                                            [13]
+
+================================================================================
+QUESTION 3: Creating a Class with Logic - Client                      [20 marks]
+================================================================================
+
+Use the class diagram below to create a new class called Client. This class will 
+store the details of a fitness center client and their membership level.
+
+Client
+Fields:
+- firstName : string
+- lastName : string
+- membershipLevel : integer
+- registrationDate : date
++ BASIC = 1 : integer
++ PREMIUM = 2 : integer
++ VIP = 3 : integer
+
+Methods:
++ Constructor(inFirst : string, inLast : string, 
+              inLevel : integer, inDate : date)
++ getFirstName() : string
++ getRegistrationDate() : date
++ getMembershipLevel() : string
++ setMembershipLevel(inLevel : integer)
++ getFullName() : string
++ toString() : string
+
+3.1  Create a new class named Client with the firstName, lastName, 
+     membershipLevel and registrationDate fields as shown in the class diagram. 
+     These fields must not be accessible outside the class.                 (3)
+
+3.2  Add the class constants BASIC, PREMIUM and VIP as shown in the class 
+     diagram.                                                               (2)
+
+3.3  Code a parameterised constructor method that will accept parameters for 
+     the first name, last name, membership level and registration date fields 
+     as shown in the class diagram. Assign these values to the firstName, 
+     membershipLevel and registrationDate fields of the class.
+     
+     Assign the lastName field as follows:
+     o If the inLast parameter is an empty string, then assign inFirst to 
+       the lastName field.
+     o Otherwise, assign the inLast parameter to the lastName field.        (5)
+
+3.4  Add accessor methods for the firstName and registrationDate fields of the 
+     class.                                                                 (2)
+
+3.5  Code a getMembershipLevel method to return a string representing the 
+     membership level of the Client. This method must return:
+     
+     • 'Basic' if the membershipLevel is BASIC
+     • 'Premium' if the membershipLevel is PREMIUM
+     • 'VIP' if the membershipLevel is VIP
+     • 'Not Assigned' if the membershipLevel is anything else               (4)
+
+3.6  Code a setMembershipLevel method as shown in the class diagram to assign 
+     the membershipLevel of the Client.                                     (2)
+
+3.7  Code a getFullName method that returns the firstName and lastName 
+     concatenated with a space between them.                                (2)
+                                                                            [20]
+
+================================================================================
+QUESTION 4: Creating a Manager Class - FitnessManager                 [31 marks]
+================================================================================
+
+4.1  Create a class called FitnessManager.                                 (1)
+
+4.2  Create four fields for the FitnessManager class as described below:
+     • An array called workoutArr to store up to 100 Workout objects.
+     • A counter called workoutSize to count the objects added to workoutArr.
+     • An array called clientArr to store up to 100 Client objects.
+     • A counter called clientSize to count the objects added to clientArr.
+     The fields should not be accessible outside the class.                 (3)
+
+4.3  Create a constructor method that will read the contents of the text file 
+     FitnessData.txt containing the information about Clients and Workouts. The 
+     first six lines contain data about Clients. You may hardcode the number 6 
+     in your solution. The remaining lines contain data about Workouts. 
+     
+     The method should do the following:
+     • Check if the file FitnessData.txt exists.
+     • Display a suitable error message if the file does not exist.
+     • Open the file for reading.
+     • Loop through the first six lines of the text file. In each iteration:
+       − Read the line and split the data into separate parts.
+       − Convert the registration date into a Date object (the data is stored 
+         in the format yyyy<space>MM<space>dd).
+       − Create a Client object and store it in the next available position 
+         in the clientArr array.
+       − Update the counter variable clientSize.
+     • Loop through the remaining lines. In each iteration of the loop:
+       − Read the line and split the data into separate parts.
+       − Create a Workout object and store it in the next available position 
+         in the workoutArr array.
+       − Update the counter variable workoutSize.                          (15)
+
+4.4  Write code to create a toString method. This method should return a string 
+     with:
+     • The heading 'Clients'.
+     • Underneath the heading the details of all Clients, each on a new line.
+     • A blank line.
+     • The heading 'Workouts'.
+     • Underneath the heading the details of all Workouts, each on a new line.
+     Use the toString methods created in the previous classes.              (6)
+
+4.5  Code a method named getActiveClients. This method should return the full 
+     name and number of months since registration only for Clients who 
+     registered more than 6 months from the current date. Do NOT hardcode the 
+     current date.
+     
+     The format must be as follows:
+     fullName<space>numMonths<space>"months."
+     
+     For example:
+     Sarah Johnson 14 months.                                               (6)
+                                                                            [31]
+
+================================================================================
+QUESTION 5: Creating a User Interface - FitnessUI                      [4 marks]
+================================================================================
+
+5.1  Write code to create a text-based user interface called FitnessUI that 
+     will allow simple input and output.                                    (1)
+
+5.2  Declare and instantiate a FitnessManager object.                      (1)
+
+5.3  Write code to call the appropriate method in the FitnessManager class to 
+     display a list of all Client objects and Workout objects.
+     
+     Sample output format:
+     Clients
+     Sarah Johnson    Premium    2023-06-15
+     Mike Davis    Basic    2024-01-10
+     
+     Workouts
+     Sarah Johnson    Running    45    520
+     Mike Davis    Cycling    30    280                                     (1)
+
+5.4  Write code to call the appropriate method in the FitnessManager class to 
+     display all active Clients.
+     
+     Sample output:
+     Sarah Johnson 14 months.                                               (1)
+                                                                             [4]
+
+================================================================================
+END OF PRACTICE PAPER 2
+TOTAL: 68 marks
+================================================================================
+
+NOTES FOR LEARNERS:
+• This paper introduces simple calculations in methods
+• Practice calculating intensity by dividing calories by duration
+• Remember to handle division carefully to avoid errors
+• The getFullName method shows how to combine fields
+• Pay attention to the difference between months and years in calculations
+• Practice date manipulation for the active clients method
+
+SAMPLE DATA FILE: FitnessData.txt
+Sarah#Johnson#2#2023 06 15
+Mike#Davis#1#2024 01 10
+Emma#Wilson#3#2022 05 20
+David#Brown#2#2023 11 05
+Lisa#Taylor#1#2024 03 12
+James#Anderson#3#2021 09 30
+Sarah Johnson#Running#45#520
+Mike Davis#Cycling#30#280
+Emma Wilson#Yoga#60#240
+David Brown#Swimming#40#450
+Lisa Taylor#Walking#25#150
+James Anderson#Weight Training#50#600
+Sarah Johnson#HIIT#30#400
+Emma Wilson#Running#35#420
+
+================================================================================
